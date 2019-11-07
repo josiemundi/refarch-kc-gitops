@@ -11,7 +11,7 @@ metadata:
     heritage: Tiller
 spec:
   rules:
-    - host: kcontainer-demo.gse-eda-demos.us-east.containers.appdomain.cloud
+    - host: kcontainer-itgtests.apps.green-with-envy.ocp.csplab.local
       http:
         paths:
           - path: /
