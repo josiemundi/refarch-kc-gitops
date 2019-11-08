@@ -54,3 +54,15 @@ spec:
               secretKeyRef:
                 name: "eventstreams-apikey"
                 key: binding
+          - name: CERTS_ENABLED
+            value : "true"
+          - name: CERTS_PATH
+            value : "/etc/ssl/certs/kcontainer/es-cert.pem"
+        volumeMounts:
+          - mountPath: "/etc/ssl/certs/kcontainer"
+            name: eventstreams-pem-certificate
+            readOnly: true
+      volumes:
+        - name: eventstreams-pem-certificate
+          secret:
+            secretName: "eventstreams-pem-file"
