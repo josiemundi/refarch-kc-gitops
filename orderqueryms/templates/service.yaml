@@ -11,7 +11,7 @@ spec:
   ports:
   - name: http
     port: 9080
-    nodePort: 31100
+    nodePort: 31102
   - name: https
     port: 9443
   selector:
