@@ -48,7 +48,7 @@ spec:
                 name: "kafka-brokers"
                 key: brokers
           - name: ORDER_TOPIC
-            value: "orders"
+            value: "itg-orders"
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:

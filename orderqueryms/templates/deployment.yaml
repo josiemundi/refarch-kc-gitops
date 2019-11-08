@@ -42,11 +42,11 @@ spec:
                 name: "kafka-brokers"
                 key: brokers
           - name: ORDER_TOPIC
-            value: "orders"
+            value: "itg-orders"
           - name: CONTAINER_TOPIC
-            value: "containers"
+            value: "itg-containers"
           - name: ERROR_TOPIC
-            value: "errors"
+            value: "itg-errors"
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:
