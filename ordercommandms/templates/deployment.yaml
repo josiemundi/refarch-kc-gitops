@@ -52,3 +52,17 @@ spec:
               secretKeyRef:
                 name: "eventstreams-apikey"
                 key: binding
+          - name: TRUSTSTORE_ENABLED
+            value: "true"
+          - name: TRUSTSTORE_PWD
+            value: "password"
+          - name: TRUSTSTORE_PATH
+            value: "/config/resources/security/es-ssl/es-cert.jks"
+        volumeMounts:
+          - mountPath: "/config/resources/security/es-ssl"
+            name: eventstreams-truststore
+            readOnly: true
+      volumes:
+        - name: eventstreams-truststore
+          secret:
+            secretName: "eventstreams-truststore-jks"
