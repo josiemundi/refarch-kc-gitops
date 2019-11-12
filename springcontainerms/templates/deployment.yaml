@@ -42,13 +42,13 @@ spec:
                 name: "kafka-brokers"
                 key: brokers
           - name: KCSOLUTION_CONTAINERS
-            value: "containers"
+            value: "itg-containers"
           - name: KCSOLUTION_ORDERS
-            value: "orders"
+            value: "itg-orders"
           - name: KCSOLUTION_REJECTED_ORDERS
-            value: "rejected-orders"
+            value: "itg-rejected-orders"
           - name: KCSOLUTION_ALLOCATED_ORDERS
-            value: "allocated-orders"
+            value: "itg-allocated-orders"
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:
