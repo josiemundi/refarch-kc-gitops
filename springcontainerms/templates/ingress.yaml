@@ -1,0 +1,18 @@
+---
+# Source: springcontainerms/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: springcontainerms-ingress
+  labels:
+    chart: 'springcontainerms-1.0.0'
+spec:
+  rules:
+    - host: kcontainer-demo-containers.gse-eda-demos.us-east.containers.appdomain.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "springcontainerms-service"
+              servicePort: http
+
