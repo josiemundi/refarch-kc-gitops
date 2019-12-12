@@ -40,11 +40,11 @@ spec:
                 name: "demo-kafka-brokers"
                 key: brokers
           - name: KAFKA_SHIP_TOPIC_NAME
-            value: "bluewaterShip"
+            value: "eda-demo-bluewaterShip"
           - name: KAFKA_CONTAINER_TOPIC_NAME
-            value: "bluewaterContainer"
+            value: "eda-demo-bluewaterContainer"
           - name: KAFKA_BW_PROBLEM_TOPIC_NAME
-            value: "bluewaterProblem"
+            value: "eda-demo-bluewaterProblem"
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:
