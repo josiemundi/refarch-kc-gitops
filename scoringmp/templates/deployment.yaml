@@ -63,7 +63,7 @@ spec:
           ### Reactive Messaging topics
           #############################
           - name: MP_MESSAGING_INCOMING_REEFERTELEMETRY_TOPIC
-            value: "eda-demo-reeferTelemetry"
+            value: "eda-demo-reeferTelemetries"
           - name: MP_MESSAGING_OUTGOING_CONTAINERS_TOPIC
             value: "eda-demo-containers"
         volumeMounts:
