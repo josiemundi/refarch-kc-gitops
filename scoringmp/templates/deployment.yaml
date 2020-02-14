@@ -15,7 +15,7 @@ spec:
         app: "scoringmp-selector"
         version: "current"
     spec:
-      serviceAccountName: reefer-simulator
+      serviceAccountName: kcontainer-runtime
       containers:
       - name: "scoringmp"
         image: "ibmcase/kcontainer-scoringmp-ms:0.1.46"
@@ -63,9 +63,15 @@ spec:
           ### Reactive Messaging topics
           #############################
           - name: MP_MESSAGING_INCOMING_REEFERTELEMETRY_TOPIC
-            value: "eda-integration-reeferTelemetry"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: reeferTelemetryTopic
           - name: MP_MESSAGING_OUTGOING_CONTAINERS_TOPIC
-            value: "eda-integration-containers"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: containersTopic
         volumeMounts:
           - mountPath: "/opt/ol/wlp/usr/servers/defaultServer/bootstrap.properties"
             subPath: "bootstrap.properties"

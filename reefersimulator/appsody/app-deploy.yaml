@@ -23,17 +23,23 @@ spec:
   - name: KAFKA_BROKERS
     valueFrom:
       configMapKeyRef:
+        name: kafka-brokers
         key: brokers
-        name: demo-kafka-brokers
   - name: TELEMETRY_TOPIC
-    value: eda-integration-reeferTelemetries
+    valueFrom:
+      configMapKeyRef:
+        name: kafka-topics
+        key: reeferTelemetryTopic
   - name: CONTAINER_TOPIC
-    value: eda-integration-containers
+    valueFrom:
+      configMapKeyRef:
+        name: kafka-topics
+        key: containersTopic
   - name: KAFKA_APIKEY
     valueFrom:
       secretKeyRef:
         key: binding
-        name: demo-es-apikey
+        name: eventstreams-apikey
   - name: KAFKA_CERT
     value: /certs/es-cert.pem
   expose: true
