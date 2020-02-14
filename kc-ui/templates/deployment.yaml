@@ -60,14 +60,20 @@ spec:
           - name: KAFKA_BROKERS
             valueFrom:
               configMapKeyRef:
-                name: "demo-kafka-brokers"
+                name: "kafka-brokers"
                 key: brokers
           - name: PROBLEM_TOPIC
-            value: "eda-integration-bluewaterProblem"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: bluewaterProblemTopic
           - name: SHIP_TOPIC
-            value: "eda-integration-bluewaterShip"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: bluewaterShipTopic
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:
-                name: "demo-es-apikey"
+                name: "eventstreams-apikey"
                 key: binding
