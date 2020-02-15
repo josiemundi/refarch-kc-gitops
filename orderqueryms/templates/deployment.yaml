@@ -18,7 +18,7 @@ spec:
       serviceAccountName: kcontainer-runtime
       containers:
       - name: "orderqueryms"
-        image: "ibmcase/kcontainer-order-query-ms:0.1.17"
+        image: "ibmcase/kcontainer-order-query-ms:0.1.19"
         imagePullPolicy: Always
 
         readinessProbe:
@@ -39,16 +39,25 @@ spec:
           - name: KAFKA_BROKERS
             valueFrom:
               configMapKeyRef:
-                name: "demo-kafka-brokers"
+                name: "kafka-brokers"
                 key: brokers
           - name: ORDER_TOPIC
-            value: "eda-demo-orders"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: ordersTopic
           - name: CONTAINER_TOPIC
-            value: "eda-demo-containers"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: containersTopic
           - name: ERROR_TOPIC
-            value: "eda-demo-errors"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: errorsTopic
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:
-                name: "demo-es-apikey"
+                name: "eventstreams-apikey"
                 key: binding

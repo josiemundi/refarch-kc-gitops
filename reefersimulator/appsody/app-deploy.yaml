@@ -17,23 +17,31 @@ metadata:
     stack.appsody.dev/version: 0.1.6
   name: reefer-simulator
 spec:
-  applicationImage: ibmcase/kcontainer-reefer-simulator-appsody:0.1.38
+  applicationImage: ibmcase/kcontainer-reefer-simulator-appsody:0.1.46
   createKnativeService: false
   env:
   - name: KAFKA_BROKERS
     valueFrom:
       configMapKeyRef:
+        name: kafka-brokers
         key: brokers
-        name: demo-kafka-brokers
   - name: TELEMETRY_TOPIC
-    value: eda-demo-reeferTelemetries
+    valueFrom:
+      configMapKeyRef:
+        name: kafka-topics
+        key: reeferTelemetryTopic
   - name: CONTAINER_TOPIC
-    value: eda-demo-containers
+    valueFrom:
+      configMapKeyRef:
+        name: kafka-topics
+        key: containersTopic
   - name: KAFKA_APIKEY
     valueFrom:
       secretKeyRef:
         key: binding
-        name: demo-es-apikey
+        name: eventstreams-apikey
+  - name: KAFKA_CERT
+    value: /certs/es-cert.pem
   expose: true
   livenessProbe:
     failureThreshold: 12
@@ -52,4 +60,12 @@ spec:
     type: NodePort
   stack: python-flask
   version: 1.0.0
+  volumeMounts:
+  - mountPath: /certs
+    name: eventstreams-cert-pem
+  volumes:
+  - name: eventstreams-cert-pem
+    secret:
+      optional: true
+      secretName: eventstreams-cert-pem
 status: {}

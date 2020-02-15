@@ -21,8 +21,7 @@ spec:
 status:
   ingress:
   - conditions:
-    - lastTransitionTime: "2019-12-11T21:57:38Z"
-      status: "True"
+    - status: "True"
       type: Admitted
     host: kcontainer-spring-container-eda-demo.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud
     routerName: router

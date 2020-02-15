@@ -1,19 +1,19 @@
 ---
-# Source: kc-ui/templates/route.yaml
+# Source: orderqueryms/templates/route.yaml
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   #TODO Add default name overrides?
-  name: kcontainer-ui
+  name: kcontainer-order-query
   labels:
-    chart: 'kc-ui-1.0.0'
+    chart: 'orderqueryms-1.0.0'
 spec:
   # Not a required attribute but ArgoCD fails sync without this field included in the YAML
-  host: kcontainer-ui-eda-demo.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud
+  host: kcontainer-order-query-eda-demo.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud
   path: /
   to:
     kind: Service
-    name: "kc-ui-service"
+    name: "orderqueryms-service"
     weight: 100
   port:
     targetPort: http
@@ -23,6 +23,6 @@ status:
   - conditions:
     - status: "True"
       type: Admitted
-    host: kcontainer-ui-eda-demo.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud
+    host: kcontainer-order-query-eda-demo.gse-eda-demos-fa9ee67c9ab6a7791435450358e564cc-0001.us-east.containers.appdomain.cloud
     routerName: router
     wildcardPolicy: None

@@ -3,14 +3,12 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: release-name-kc-ui
+  name: "kc-ui-deployment"
   labels:
-    app: kc-ui
-    chart: kc-ui-1.0.0
-    release: release-name
-    heritage: Tiller
+    chart: 'kc-ui-1.0.0'
 spec:
   replicas: 1
+  revisionHistoryLimit: 1
   selector:
     matchLabels:
       app: kc-ui
@@ -66,14 +64,20 @@ spec:
           - name: KAFKA_BROKERS
             valueFrom:
               configMapKeyRef:
-                name: "demo-kafka-brokers"
+                name: "kafka-brokers"
                 key: brokers
           - name: PROBLEM_TOPIC
-            value: "eda-demo-bluewaterProblem"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: bluewaterProblemTopic
           - name: SHIP_TOPIC
-            value: "eda-demo-bluewaterShip"
+            valueFrom:
+              configMapKeyRef:
+                name: "kafka-topics"
+                key: bluewaterShipTopic
           - name: KAFKA_APIKEY
             valueFrom:
               secretKeyRef:
-                name: "demo-es-apikey"
+                name: "eventstreams-apikey"
                 key: binding
