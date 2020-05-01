@@ -1,0 +1,73 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    commit.image.appsody.dev/author: David Jones <djones6@uk.ibm.com>
+    commit.image.appsody.dev/committer: David Jones <djones6@uk.ibm.com>
+    commit.image.appsody.dev/contextDir: C:\dev\refarch\appsody-container-ms
+    commit.image.appsody.dev/date: Fri Apr 3 12:51:46 2020 +0100
+    commit.image.appsody.dev/message: Commit removed quotes, add namespace to kustomization
+    commit.stack.appsody.dev/author: Richard Trotter <45805781+richard-trotter@users.noreply.github.com>
+    commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
+    commit.stack.appsody.dev/contextDir: /incubator/java-spring-boot2
+    commit.stack.appsody.dev/date: Wed Apr 1 11:16:02 2020 +0100
+    commit.stack.appsody.dev/message: retract spring boot stack image packages update
+      (#707)
+    image.opencontainers.org/created: "2020-04-03T13:45:11+01:00"
+    image.opencontainers.org/documentation: https://github.com/djones6/refarch-kc-container-ms
+    image.opencontainers.org/revision: 781cac7c0b3a7804abb587c726eac91dbb889c65
+    image.opencontainers.org/source: |
+      https://github.com/djones6/refarch-kc-container-ms/tree/appsodyify2
+    image.opencontainers.org/url: https://github.com/djones6/refarch-kc-container-ms
+    stack.appsody.dev/authors: Erin Schnabel <schnabel@us.ibm.com>, Ozzy Osborne <ozzy@ca.ibm.com>,
+      Richard Trotter <rtrotter@us.ibm.com>, Harish Yayi <hyayi@us.ibm.com>
+    stack.appsody.dev/configured: docker.io/appsody/java-spring-boot2:0.3
+    stack.appsody.dev/created: "2020-04-01T10:19:47Z"
+    stack.appsody.dev/description: Spring Boot using OpenJ9 and Maven
+    stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-spring-boot2/README.md
+    stack.appsody.dev/licenses: Apache-2.0
+    stack.appsody.dev/revision: e5dd8297764280e82a94b3b2b6ead25c877b43b2
+    stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-spring-boot2/image
+    stack.appsody.dev/tag: docker.io/appsody/java-spring-boot2:0.3.28
+    stack.appsody.dev/title: Spring Boot®
+    stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-spring-boot2
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/part-of: refarch-kc
+    image.opencontainers.org/title: spring-container-ms
+    stack.appsody.dev/id: java-spring-boot2
+    stack.appsody.dev/version: 0.3.28
+  name: spring-container-ms
+spec:
+  applicationImage: djones6/spring-container-ms:0.0.3
+  createKnativeService: false
+  env: {}
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /actuator/liveness
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  monitoring:
+    endpoints:
+    - path: /actuator/prometheus
+    labels:
+      k8s-app: spring-container-ms
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /actuator/health
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/path: /actuator/prometheus
+      prometheus.io/scrape: "true"
+    port: 8080
+    type: NodePort
+  stack: java-spring-boot2
+  version: 1.0.0

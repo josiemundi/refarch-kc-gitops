@@ -1,0 +1,5 @@
+resources:
+# Maybe configmaps?
+
+bases:
+  - ../../../services/spring-container-ms

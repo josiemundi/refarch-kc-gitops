@@ -1,0 +1,6 @@
+bases:
+  - ../../apps/refarch-kc/overlays
+
+resources:
+  - ./namespace.yaml
+  - ./kafka-topics.yaml
