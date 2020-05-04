@@ -4,3 +4,12 @@ bases:
 resources:
   - ./namespace.yaml
   - ./kafka-topics.yaml
+
+# Empty value for kafka-apikey should be interpreted by consuming microservices
+# that credentials are not required to connect to Kafka.
+secretGenerator:
+  - name: kafka-apikey
+    literals:
+      - binding=""
+generatorOptions:
+  disableNameSuffixHash: true
