@@ -1,5 +1,5 @@
-resources:
-# Maybe configmaps?
-
 bases:
   - ../../../services/spring-container-ms
+
+resources:
+  - ./topics.yaml

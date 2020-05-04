@@ -4,7 +4,8 @@ bases:
 resources:
   - ./namespace.yaml
   - ./service-account.yaml
-  - ./kafka-topics.yaml
+  - ./kafka-cluster.yaml
+  - ./kafka-topics-configmap.yaml
   - ./bpm-configmap.yaml
 
 patchesStrategicMerge:
@@ -34,7 +35,7 @@ secretGenerator:
 configMapGenerator:
   - name: kafka-brokers
     literals:
-      - brokers="my-cluster-kafka-bootstrap.kafka.svc:9092"
+      - brokers="my-cluster-kafka-bootstrap:9092"
 
 generatorOptions:
   disableNameSuffixHash: true
