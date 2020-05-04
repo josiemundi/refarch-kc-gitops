@@ -3,13 +3,38 @@ bases:
 
 resources:
   - ./namespace.yaml
+  - ./service-account.yaml
   - ./kafka-topics.yaml
+  - ./bpm-configmap.yaml
 
+patchesStrategicMerge:
+  - ./service-account-patch.yaml
+
+secretGenerator:
 # Empty value for kafka-apikey should be interpreted by consuming microservices
 # that credentials are not required to connect to Kafka.
-secretGenerator:
+# Or maybe we can just flag this as optional?
   - name: kafka-apikey
     literals:
       - binding=""
+  - name: postgresql-url
+    literals:
+      - binding="jdbc:postgresql://postgresql.postgres.svc:5432/postgres"
+  - name: postgresql-user
+    literals:
+      - binding="postgres"
+  - name: postgresql-pwd
+    literals:
+      - binding="supersecret"
+  - name: bpm-anomaly
+    literals:
+      - user='your-username'
+      - password='your-password'
+
+configMapGenerator:
+  - name: kafka-brokers
+    literals:
+      - brokers="my-cluster-kafka-bootstrap.kafka.svc:9092"
+
 generatorOptions:
   disableNameSuffixHash: true
