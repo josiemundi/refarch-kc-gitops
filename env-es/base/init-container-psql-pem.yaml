@@ -1,0 +1,25 @@
+# Create a Java truststore containing required certificates. See:
+# https://developers.redhat.com/blog/2017/11/22/dynamically-creating-java-keystores-openshift/
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: spring-container-ms
+spec:
+  initContainers:
+  - name: pem-to-truststore
+    image: registry.access.redhat.com/redhat-sso-7/sso71-openshift:1.1-16
+    env:
+    - name: POSTGRESQL_CA_PEM
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-ca-pem
+          key: pem
+    - name: JKS_LOCATION
+      value: /var/run/secrets/java.io/keystores/truststore.jks
+    - name: STOREPASS
+      value: changeit
+    command: ['/bin/bash']
+    args: ['-c', "echo \"${POSTGRESQL_CA_PEM}\" > psql.pem && openssl x509 -in psql.pem -inform pem -out psql.der -outform der && keytool -importcert -noprompt -alias postgresql -keystore ${JKS_LOCATION} -storepass ${STOREPASS} -file psql.der ; keytool -list -keystore ${JKS_LOCATION} -storepass ${STOREPASS}"]
+    volumeMounts:
+    - mountPath: /var/run/secrets/java.io/keystores
+      name: keystore-volume

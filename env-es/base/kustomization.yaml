@@ -1,0 +1,54 @@
+bases:
+  - ../../apps/refarch-kc/overlays
+
+resources:
+  - ./namespace.yaml
+  - ./service-account.yaml
+  - ./kafka-topics-configmap.yaml
+  - ./bpm-configmap.yaml
+
+patchesStrategicMerge:
+  - ./service-account-patch.yaml
+  - ./truststore-volume-mount.yaml
+  - ./truststore-volume.yaml
+  - ./init-container-psql-pem.yaml
+
+patchesJson6902:
+  - target:
+      group: appsody.dev
+      version: v1beta1
+      kind: AppsodyApplication
+      name: spring-container-ms
+    path: ./truststore-env-patch.yaml
+
+secretGenerator:
+# Empty value for kafka-apikey should be interpreted by consuming microservices
+# that credentials are not required to connect to Kafka.
+# Or maybe we can just flag this as optional?
+  - name: kafka-apikey
+    files:
+      - ./credentials/kafka-apikey/binding
+  - name: postgresql-url
+    files:
+      - ./credentials/postgresql-url/binding
+  - name: postgresql-user
+    files:
+      - ./credentials/postgresql-user/binding
+  - name: postgresql-pwd
+    files:
+      - ./credentials/postgresql-pwd/binding
+  - name: postgresql-ca-pem
+    files:
+      - ./credentials/gsa-eda-sandbox-db/pem
+  - name: bpm-anomaly
+    literals:
+      - user='your-username'
+      - password='your-password'
+
+configMapGenerator:
+  - name: kafka-brokers
+    literals:
+      - brokers="broker-3-qnprtqnp7hnkssdz.kafka.svc01.us-east.eventstreams.cloud.ibm.com:9093,broker-0-qnprtqnp7hnkssdz.kafka.svc01.us-east.eventstreams.cloud.ibm.com:9093,broker-1-qnprtqnp7hnkssdz.kafka.svc01.us-east.eventstreams.cloud.ibm.com:9093,broker-2-qnprtqnp7hnkssdz.kafka.svc01.us-east.eventstreams.cloud.ibm.com:9093,broker-4-qnprtqnp7hnkssdz.kafka.svc01.us-east.eventstreams.cloud.ibm.com:9093,broker-5-qnprtqnp7hnkssdz.kafka.svc01.us-east.eventstreams.cloud.ibm.com:9093"
+
+generatorOptions:
+  disableNameSuffixHash: true
