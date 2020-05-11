@@ -9,22 +9,21 @@ resources:
 
 patchesStrategicMerge:
   - ./service-account-patch.yaml
-  - ./truststore-volume-mount.yaml
-  - ./truststore-volume.yaml
-  - ./init-container-psql-pem.yaml
+  - ./postgres-ca-volume-mount.yaml
+  - ./postgres-ca-volume.yaml
+  # - ./truststore-volume-mount.yaml
+  # - ./truststore-volume.yaml
+  # - ./init-container-psql-pem.yaml
 
-patchesJson6902:
-  - target:
-      group: appsody.dev
-      version: v1beta1
-      kind: AppsodyApplication
-      name: spring-container-ms
-    path: ./truststore-env-patch.yaml
+# patchesJson6902:
+#   - target:
+#       group: appsody.dev
+#       version: v1beta1
+#       kind: AppsodyApplication
+#       name: spring-container-ms
+#     path: ./truststore-env-patch.yaml
 
 secretGenerator:
-# Empty value for kafka-apikey should be interpreted by consuming microservices
-# that credentials are not required to connect to Kafka.
-# Or maybe we can just flag this as optional?
   - name: kafka-apikey
     files:
       - ./credentials/kafka-apikey/binding
@@ -39,7 +38,7 @@ secretGenerator:
       - ./credentials/postgresql-pwd/binding
   - name: postgresql-ca-pem
     files:
-      - ./credentials/gsa-eda-sandbox-db/pem
+      - ./credentials/gsa-eda-sandbox-db/root.crt
   - name: bpm-anomaly
     literals:
       - user='your-username'

@@ -13,7 +13,7 @@ spec:
       valueFrom:
         secretKeyRef:
           name: postgresql-ca-pem
-          key: pem
+          key: root.crt
     - name: JKS_LOCATION
       value: /var/run/secrets/java.io/keystores/truststore.jks
     - name: STOREPASS
