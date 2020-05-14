@@ -5,11 +5,9 @@ resources:
   - ./namespace.yaml
   - ./service-account.yaml
   - ./kafka-cluster.yaml
+  - ./kafka-topics.yaml
   - ./kafka-topics-configmap.yaml
   - ./bpm-configmap.yaml
-
-patchesStrategicMerge:
-  - ./service-account-patch.yaml
 
 secretGenerator:
 # Empty value for kafka-apikey should be interpreted by consuming microservices

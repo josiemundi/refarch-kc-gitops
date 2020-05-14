@@ -1,5 +1,25 @@
 bases:
   - ../base
 
-#patchesStrategicMerge:
-#  - ./patch.yaml
+# Postgres CA mounted as /.postgresql/root.crt (for default SSLFactory)
+patchesStrategicMerge:
+  - ./service-account-patch.yaml
+  - ./postgres-ca-volume-mount.yaml
+  - ./postgres-ca-volume.yaml
+
+# Below patches add Postgres cert to a new Java truststore and then set that as the default.
+# Also requires postgresql URL to use &sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory
+# Disabled this method as truststore no longer has default entries so breaks other SSL connections
+
+# patchesStrategicMerge:
+  # - ./truststore-volume-mount.yaml
+  # - ./truststore-volume.yaml
+  # - ./init-container-psql-pem.yaml
+
+# patchesJson6902:
+#   - target:
+#       group: appsody.dev
+#       version: v1beta1
+#       kind: AppsodyApplication
+#       name: spring-container-ms
+#     path: ./truststore-env-patch.yaml
