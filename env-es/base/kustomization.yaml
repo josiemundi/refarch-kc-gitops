@@ -24,9 +24,9 @@ patchesStrategicMerge:
 #     path: ./truststore-env-patch.yaml
 
 secretGenerator:
-  - name: kafka-apikey
+  - name: eventstreams-apikey
     files:
-      - ./credentials/kafka-apikey/binding
+      - ./credentials/eventstreams-apikey/binding
   - name: postgresql-url
     files:
       - ./credentials/postgresql-url/binding

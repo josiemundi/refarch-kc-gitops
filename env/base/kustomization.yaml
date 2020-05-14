@@ -15,7 +15,7 @@ secretGenerator:
 # Empty value for kafka-apikey should be interpreted by consuming microservices
 # that credentials are not required to connect to Kafka.
 # Or maybe we can just flag this as optional?
-  - name: kafka-apikey
+  - name: eventstreams-apikey
     literals:
       - binding=""
   - name: postgresql-url
