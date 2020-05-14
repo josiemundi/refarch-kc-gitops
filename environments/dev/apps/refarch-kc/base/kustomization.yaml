@@ -7,6 +7,3 @@ bases:
   - ../../../services/reefersimulator
   - ../../../services/scoringmp
   - ../../../services/voyagesms
-
-resources:
-  - ./topics.yaml
