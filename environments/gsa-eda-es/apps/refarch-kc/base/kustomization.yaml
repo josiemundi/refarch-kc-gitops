@@ -1,0 +1,12 @@
+bases:
+  - ../../../services/spring-container-ms
+  - ../../../services/fleetms
+  - ../../../services/kc-ui
+  - ../../../services/ordercommandms
+  - ../../../services/orderqueryms
+  - ../../../services/reefersimulator
+  - ../../../services/scoringmp
+  - ../../../services/voyagesms
+
+resources:
+  - ./topics.yaml
