@@ -1,0 +1,4 @@
+bases:
+  - ../../../apps/refarch-kc/base/kafka
+
+namespace: kafka
