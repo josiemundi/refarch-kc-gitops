@@ -7,7 +7,10 @@
   path: "/spec/env/-"
   value:
     name: TRUSTSTORE_PWD
-    value: changeit
+    valueFrom:
+      secretKeyRef:
+        name: es-truststore-jks
+        key: password
 - op: add
   path: "/spec/env/-"
   value:

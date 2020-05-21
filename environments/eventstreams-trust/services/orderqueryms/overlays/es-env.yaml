@@ -11,6 +11,9 @@ spec:
           - name: TRUSTSTORE_ENABLED
             value: "true"
           - name: TRUSTSTORE_PWD
-            value: changeit
+            valueFrom:
+              secretKeyRef:
+                name: es-truststore-jks
+                key: password
           - name: TRUSTSTORE_PATH
             value: /config/resources/security/es-ssl/es-cert.jks

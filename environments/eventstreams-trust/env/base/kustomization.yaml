@@ -14,6 +14,7 @@ secretGenerator:
   - name: es-truststore-jks
     files:
       - ./credentials/eventstreams-truststore/es-cert.jks
+      - ./credentials/eventstreams-truststore/password
   - name: es-ca-pemfile
     files:
       - ./credentials/eventstreams-pem/es-cert.pem
