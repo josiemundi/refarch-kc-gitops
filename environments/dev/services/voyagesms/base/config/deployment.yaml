@@ -1,6 +1,6 @@
 ---
 # Source: voyagesms/templates/deployment.yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "voyagesms-deployment"
@@ -14,6 +14,9 @@ spec:
       maxUnavailable: 0
       maxSurge: 1
   revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: "voyagesms-selector"
   template:
     metadata:
       labels:

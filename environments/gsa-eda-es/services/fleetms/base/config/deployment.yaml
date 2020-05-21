@@ -1,6 +1,6 @@
 ---
 # Source: fleetms/templates/deployment.yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "fleetms-deployment"
@@ -9,6 +9,9 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: "fleetms-selector"
   template:
     metadata:
       labels:
