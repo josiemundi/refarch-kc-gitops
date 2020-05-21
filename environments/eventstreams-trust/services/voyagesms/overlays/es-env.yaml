@@ -9,6 +9,6 @@ spec:
       - name: voyagesms
         env:
           - name: CERTS_ENABLED
-            value: true
+            value: "true"
           - name: CERTS_PATH
             value: /etc/ssl/certs/kcontainer/es-cert.pem

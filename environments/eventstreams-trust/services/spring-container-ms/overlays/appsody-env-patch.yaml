@@ -2,7 +2,7 @@
   path: "/spec/env/-"
   value:
     name: TRUSTSTORE_ENABLED
-    value: true
+    value: "true"
 - op: add
   path: "/spec/env/-"
   value:

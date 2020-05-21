@@ -9,6 +9,6 @@ spec:
       - name: kc-ui
         env:
           - name: CERTS_ENABLED
-            value: true
+            value: "true"
           - name: KAFKA_CERT_PATH
             value: /etc/ssl/certs/kcontainer/es-cert.pem

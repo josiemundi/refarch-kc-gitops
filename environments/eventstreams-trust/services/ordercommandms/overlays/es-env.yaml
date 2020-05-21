@@ -9,7 +9,7 @@ spec:
       - name: ordercommandms
         env:
           - name: TRUSTSTORE_ENABLED
-            value: true
+            value: "true"
           - name: TRUSTSTORE_PWD
             value: changeit
           - name: TRUSTSTORE_PATH
