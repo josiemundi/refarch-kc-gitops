@@ -19,14 +19,17 @@ kubectl apply -k environments/dev
 
 ### Environment with off-cluster backing services
 
-Prerequisites: supply credentials for backing services as files - see [credentials/README]()
+Prerequisites: supply credentials for backing services as files - see [credentials README](./environments/example-credentials/env/base/credentials/README.md)
 ```
-kubectl apply -k environments/credentials-example
+kubectl apply -k environments/example-credentials
 ```
 
 ### Environment with off-cluster Event Streams with certificates
 
-TODO
+Prerequisites: supply credentials for backing services as files - see [credentials README](./environments/example-es-truststore/env/base/credentials/README.md)
+```
+kubectl apply -k environments/example-es-truststore
+```
 
 ## Deploying KContainer Reference Implementation using GitOps templates
 
