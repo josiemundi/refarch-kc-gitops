@@ -7,3 +7,6 @@ bases:
   - ../../../services/reefersimulator
   - ../../../services/scoringmp
   - ../../../services/voyagesms
+
+resources:
+  - ./kafka/kafka-topics.yaml

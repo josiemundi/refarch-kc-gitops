@@ -1,3 +1,0 @@
-resources:
-  - ./kafka-cluster.yaml
-  - ./namespace.yaml

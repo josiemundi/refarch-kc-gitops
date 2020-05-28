@@ -1,4 +1,4 @@
 bases:
   - ../base
 
-namespace: kafka
+namespace: shipping
