@@ -50,7 +50,7 @@ spec:
           - name: ORDERCOMMANDMS_SERVICE_PORT
             value: "9080"
           - name: ORDERQUERYMS_SERVICE_HOST
-            value: "orderqueryms-service"
+            value: "order-query-ms"
           - name: ORDERQUERYMS_SERVICE_PORT
             value: "9080"
           - name: VOYAGESMS_SERVICE_HOST
