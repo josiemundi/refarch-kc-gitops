@@ -46,7 +46,7 @@ spec:
           - name: FLEETMS_SERVICE_PORT
             value: "9080"
           - name: ORDERCOMMANDMS_SERVICE_HOST
-            value: "order-command-ms-app"
+            value: "order-command-ms"
           - name: ORDERCOMMANDMS_SERVICE_PORT
             value: "9080"
           - name: ORDERQUERYMS_SERVICE_HOST
