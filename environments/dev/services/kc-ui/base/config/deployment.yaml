@@ -42,7 +42,7 @@ spec:
           - name: PORT
             value : "3010"
           - name: FLEETMS_SERVICE_HOST
-            value: "fleetms-service"
+            value: "fleet-ms"
           - name: FLEETMS_SERVICE_PORT
             value: "9080"
           - name: ORDERCOMMANDMS_SERVICE_HOST
